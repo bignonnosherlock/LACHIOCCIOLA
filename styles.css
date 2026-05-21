@@ -435,6 +435,14 @@ section { position: relative; z-index: 2; }
   top: 120px;
 }
 
+.manifesto__lead-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  margin-top: 0;
+}
+
 .manifesto__lead-num {
   display: block;
   font-family: var(--display);

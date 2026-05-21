@@ -601,9 +601,7 @@
   <div class="wrap">
     <div class="manifesto__inner">
       <aside class="manifesto__lead reveal">
-        <span class="manifesto__lead-num">№ 01 · Manifesto</span>
-        <span class="manifesto__lead-rule"></span>
-        Dalle nostre stanze
+        <img src="images/hero/esterno-03.jpg" alt="La Chiocciola — esterno" loading="lazy" class="manifesto__lead-img"/>
       </aside>
       <div class="manifesto__body reveal">
         <p>
@@ -670,8 +668,8 @@
 <section class="apts-index" id="appartamenti" data-screen-label="04 Appartamenti — indice">
   <div class="wrap">
     <div class="apts-index__head reveal">
-      <h2 class="apts-index__title">I cinque <em>appartamenti</em></h2>
-      <span class="apts-index__meta">Indice · 5 unità · arredamenti distinti</span>
+      <h2 class="apts-index__title">I sei <em>appartamenti</em></h2>
+      <span class="apts-index__meta">Indice · 6 unità · arredamenti distinti</span>
     </div>
     <ul class="apts-index__list reveal" role="list">
       <li class="apts-index__row" data-jump="#apt-bosco">
@@ -679,6 +677,13 @@
         <span class="apts-index__row-name">I colori del bosco</span>
         <span class="apts-index__row-type">Bilocale · max 3</span>
         <span class="apts-index__row-size">28&nbsp;m²</span>
+        <span class="apts-index__row-arrow">↓</span>
+      </li>
+      <li class="apts-index__row" data-jump="#apt-artico">
+        <span class="apts-index__row-num">№ 03</span>
+        <span class="apts-index__row-name">L'artico</span>
+        <span class="apts-index__row-type">Trilocale · max 4</span>
+        <span class="apts-index__row-size">—&nbsp;m²</span>
         <span class="apts-index__row-arrow">↓</span>
       </li>
       <li class="apts-index__row" data-jump="#apt-sentiero">
@@ -774,6 +779,70 @@
           <li>Aria condizionata</li>
           <li>Giardino esterno</li>
         </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     APT 03 — L'ARTICO  (mirrored)
+     ════════════════════════════════════════════════════════ -->
+<section class="apt apt--mirror" id="apt-artico" data-screen-label="06 L'artico">
+  <div class="wrap">
+    <div class="apt__inner">
+      <div class="apt__body reveal">
+        <div class="apt__num">№ 03 / Trilocale</div>
+        <h3 class="apt__name">L'<em>artico</em></h3>
+        <p class="apt__tagline">Toni chiari e luce ampia, per chi cerca quiete e spazio.</p>
+        <p class="apt__desc">
+          Trilocale con due camere, cucina abitabile e bagno privato. Adatto a famiglie o
+          piccoli gruppi che desiderano comfort e indipendenza.
+        </p>
+        <div class="apt__specs">
+          <div>
+            <div class="apt__spec-label">Tipologia</div>
+            <div class="apt__spec-value">Trilocale</div>
+          </div>
+          <div>
+            <div class="apt__spec-label">Ospiti</div>
+            <div class="apt__spec-value">4<small>max</small></div>
+          </div>
+          <div>
+            <div class="apt__spec-label">Superficie</div>
+            <div class="apt__spec-value">—<small>m²</small></div>
+          </div>
+        </div>
+        <button class="apt__services-toggle" aria-expanded="false">Servizi e dotazioni</button>
+        <ul class="apt__services">
+          <li>Armadi guardaroba per ogni camera</li>
+          <li>Appendiabiti</li>
+          <li>Cucina attrezzata con piatti, posate, bicchieri, calici e tovaglie</li>
+          <li>Zona pranzo con tavolo e sedie</li>
+          <li>Bollitore</li>
+          <li>Frigorifero</li>
+          <li>TV</li>
+          <li>Bagno con doccia, bidet, wc, lavabo</li>
+          <li>Scaldasalviette e phon</li>
+          <li>Riscaldamento a pavimento</li>
+          <li>Aria condizionata</li>
+        </ul>
+      </div>
+      <div class="apt__gallery reveal" data-gallery="artico">
+        <div class="apt__gallery-stage">
+          <img src="images/artico/01.jpg" alt="L'artico — 01" class="active" loading="lazy"/>
+          <img src="images/artico/02.jpg" alt="L'artico — 02" loading="lazy"/>
+          <img src="images/artico/03.jpg" alt="L'artico — 03" loading="lazy"/>
+          <img src="images/artico/04.jpg" alt="L'artico — 04" loading="lazy"/>
+          <img src="images/artico/05.jpg" alt="L'artico — 05" loading="lazy"/>
+          <div class="apt__gallery-meta">01 / 05 · Artico</div>
+        </div>
+        <div class="apt__thumbs">
+          <button class="active" data-i="0"><img src="images/artico/01.jpg" loading="lazy" alt=""/></button>
+          <button data-i="1"><img src="images/artico/02.jpg" loading="lazy" alt=""/></button>
+          <button data-i="2"><img src="images/artico/03.jpg" loading="lazy" alt=""/></button>
+          <button data-i="3"><img src="images/artico/04.jpg" loading="lazy" alt=""/></button>
+          <button data-i="4"><img src="images/artico/05.jpg" loading="lazy" alt=""/></button>
+        </div>
       </div>
     </div>
   </div>
@@ -1445,6 +1514,7 @@
   // ─── Planimetria ─────────────────────────────────────
   const PLANS = {
     'apt-bosco':    { file: 'planimetrie/colori-del-bosco.pdf', name: 'I colori del bosco' },
+    'apt-artico':   { file: 'planimetrie/l-artico.pdf',         name: "L'artico" },
     'apt-sentiero': { file: 'planimetrie/il-sentiero.pdf',      name: 'Il sentiero' },
     'apt-essenza':  { file: 'planimetrie/l-essenza.pdf',        name: "L'essenza" },
     'apt-guscio':   { file: 'planimetrie/il-guscio.pdf',        name: 'Il guscio' },
