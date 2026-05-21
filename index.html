@@ -28,6 +28,20 @@
      ──────────────────────────────────────────────────── */
   .topbar__brand-stars,
   .apts-index__meta,
+  .apts-index__row-num,
+  .apts-index__row-type,
+  .apts-index__row-size,
+  .apt__num,
+  .apt__spec-label,
+  .apt__services-toggle,
+  .apt__plan-btn,
+  .apt__gallery-meta,
+  .contatti__list dt,
+  .distances__tag,
+  .footer__col h4,
+  .footer__bottom,
+  .section-head__num,
+  .label,
   .footer__brand div > div[style] {
     font-family: 'Manrope', sans-serif !important;
     text-transform: uppercase;
@@ -35,12 +49,60 @@
     font-weight: 500;
     font-size: 11px;
   }
+  /* Slightly larger for items that need presence */
+  .apts-index__row-num,
+  .apt__num,
+  .section-head__num,
+  .label {
+    font-size: 11.5px;
+    letter-spacing: 0.22em !important;
+  }
+  .apts-index__row-type,
+  .apts-index__row-size {
+    font-size: 12px;
+    letter-spacing: 0.10em !important;
+    text-transform: none;
+    font-weight: 400;
+    opacity: 0.78;
+  }
+  .apt__spec-label,
+  .contatti__list dt,
+  .footer__col h4 {
+    font-size: 10.5px;
+    letter-spacing: 0.24em !important;
+    opacity: 0.72;
+  }
+  .apt__gallery-meta {
+    font-size: 10px;
+    letter-spacing: 0.20em !important;
+  }
   .manifesto__lead {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-weight: 500;
     letter-spacing: 0.02em;
     text-transform: none;
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.4;
+  }
+  .manifesto__lead-num {
+    display: block;
+    font-family: 'Manrope', sans-serif;
+    font-style: normal;
+    font-size: 10.5px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--copper, #b87333);
+    margin-top: 14px;
+    opacity: 0.85;
+  }
+  .manifesto__lead-rule {
+    display: block;
+    width: 56px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.35;
+    margin: 20px 0 18px;
   }
 
   /* ─── Mobile: topbar + hamburger ──────────────────────── */
@@ -412,6 +474,51 @@
   body.legal-open > main,
   body.legal-open > .footer,
   body.legal-open > .fab-stack { display: none; }
+
+  /* ─── Image fallback (when files are missing) ────────── */
+  .img-fallback {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    background: linear-gradient(135deg, #1f2a23 0%, #2a3a30 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(212, 180, 130, 0.55);
+    overflow: hidden;
+  }
+  .img-fallback::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: 18px;
+    left: 22px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(212, 180, 130, 0.7);
+  }
+  .img-fallback svg {
+    width: 36%;
+    max-width: 180px;
+    height: auto;
+    opacity: 0.35;
+  }
+  .apt__thumbs button.broken {
+    background: linear-gradient(135deg, #1f2a23 0%, #2a3a30 100%);
+    position: relative;
+  }
+  .apt__thumbs button.broken img { opacity: 0; }
+  .apt__thumbs button.broken::after {
+    content: "";
+    position: absolute;
+    inset: 30%;
+    background: currentColor;
+    color: rgba(212, 180, 130, 0.4);
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><g fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><path d='M9 47 Q 14 53 24 53 L 46 53 Q 53 53 56 49'/><path d='M52 49 Q 56 36 52 28'/><circle cx='28' cy='34' r='16'/><circle cx='28' cy='34' r='10'/><circle cx='28' cy='34' r='5'/></g></svg>") center/contain no-repeat;
+            mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><g fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><path d='M9 47 Q 14 53 24 53 L 46 53 Q 53 53 56 49'/><path d='M52 49 Q 56 36 52 28'/><circle cx='28' cy='34' r='16'/><circle cx='28' cy='34' r='10'/><circle cx='28' cy='34' r='5'/></g></svg>") center/contain no-repeat;
+  }
 </style>
 </head>
 <body>
@@ -494,6 +601,8 @@
   <div class="wrap">
     <div class="manifesto__inner">
       <aside class="manifesto__lead reveal">
+        <span class="manifesto__lead-num">№ 01 · Manifesto</span>
+        <span class="manifesto__lead-rule"></span>
         Dalle nostre stanze
       </aside>
       <div class="manifesto__body reveal">
@@ -1394,7 +1503,54 @@
   });
 
   // ════════════════════════════════════════════════════
-  // COOKIE CONSENT MANAGEMENT (GDPR compliant)
+  // IMAGE FALLBACK — when gallery files are missing
+  // ════════════════════════════════════════════════════
+  function makeFallback(stage, label) {
+    // Avoid duplicating
+    if (stage.querySelector('.img-fallback')) return;
+    const fb = document.createElement('div');
+    fb.className = 'img-fallback';
+    fb.setAttribute('data-label', label);
+    fb.innerHTML = '<svg viewBox="0 0 64 64" aria-hidden="true">' +
+      '<g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' +
+      '<path d="M9 47 Q 14 53 24 53 L 46 53 Q 53 53 56 49"/>' +
+      '<path d="M52 49 Q 56 36 52 28"/>' +
+      '<path d="M56 49 Q 60 38 58 31"/>' +
+      '<circle cx="51.4" cy="27.4" r="1.2" fill="currentColor" stroke="none"/>' +
+      '<circle cx="58.2" cy="30.4" r="1.2" fill="currentColor" stroke="none"/>' +
+      '<circle cx="28" cy="34" r="16"/>' +
+      '<circle cx="28" cy="34" r="11"/>' +
+      '<circle cx="28" cy="34" r="6.5"/>' +
+      '<circle cx="28" cy="34" r="2.5"/>' +
+      '</g></svg>';
+    stage.insertBefore(fb, stage.firstChild);
+  }
+
+  document.querySelectorAll('.apt__gallery').forEach(gal => {
+    const name = (gal.getAttribute('data-gallery') || '').toUpperCase();
+    const stage = gal.querySelector('.apt__gallery-stage');
+    const stageImgs = stage.querySelectorAll('img');
+    let broken = 0;
+
+    stageImgs.forEach(img => {
+      const onFail = () => {
+        broken++;
+        img.style.display = 'none';
+        if (broken === stageImgs.length) {
+          makeFallback(stage, name);
+        }
+      };
+      if (img.complete && img.naturalWidth === 0) onFail();
+      else img.addEventListener('error', onFail);
+    });
+
+    // Thumbs
+    gal.querySelectorAll('.apt__thumbs button img').forEach(img => {
+      const onFail = () => img.parentElement.classList.add('broken');
+      if (img.complete && img.naturalWidth === 0) onFail();
+      else img.addEventListener('error', onFail);
+    });
+  });
   // ════════════════════════════════════════════════════
   const CONSENT_KEY = 'lc_cookie_consent_v1';
   const banner = document.getElementById('cookieBanner');
