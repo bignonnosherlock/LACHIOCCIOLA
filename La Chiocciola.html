@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0f0e0c" />
+<title>Residence La Chiocciola — Casa vacanze a Momo, Novara</title>
+<meta name="description" content="Residence / CAV La Chiocciola di Cerruti Nicolas — Via Davide Squarini 14, 28015 Momo (NO). Cinque appartamenti tra i laghi Maggiore e d'Orta, a 24 km da Malpensa." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700&family=Major+Mono+Display&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="styles.css" />
+
+<!-- ════════════════════════════════════════════════════════
+     ADJUSTMENTS — text legibility, mobile, FABs, cookie banner
+     Inline overrides on top of styles.css to avoid touching it.
+     ════════════════════════════════════════════════════════ -->
+<style>
+  /* ─── Typographic fixes ─────────────────────────────────
+     The original "Major Mono Display" treatment crushed
+     phrases like "Quaderno della casa", "Indice · arredamenti
+     distinti", "RESIDENCE / CAV · di Cerruti Nicolas".
+     We swap to a clean sans-serif at small caps + softer
+     letter-spacing so they read properly without losing
+     the editorial vibe.
+     ──────────────────────────────────────────────────── */
+  .topbar__brand-stars,
+  .apts-index__meta,
+  .footer__brand div > div[style] {
+    font-family: 'Manrope', sans-serif !important;
+    text-transform: uppercase;
+    letter-spacing: 0.18em !important;
+    font-weight: 500;
+    font-size: 11px;
+  }
+  .manifesto__lead {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: none;
+  }
+
+  /* ─── Mobile: topbar + hamburger ──────────────────────── */
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: 0;
+    padding: 8px;
+    cursor: pointer;
+    color: inherit;
+    margin-left: auto;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: currentColor;
+    margin: 5px 0;
+    transition: transform .3s ease, opacity .3s ease;
+  }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+  }
+  .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+
+  @media (max-width: 860px) {
+    .topbar { flex-wrap: wrap; padding: 14px 18px !important; }
+    .topbar__brand-stars { font-size: 9px; }
+    .topbar__brand-name { font-size: 18px; }
+    .nav-toggle { display: block; }
+    .topbar__nav {
+      flex-basis: 100%;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease, padding .35s ease;
+      padding: 0;
+    }
+    .topbar__nav.open {
+      max-height: 400px;
+      padding: 18px 0 8px;
+    }
+    .topbar__cta {
+      display: none;
+    }
+    .topbar__nav.open + .topbar__cta,
+    .topbar.menu-open .topbar__cta {
+      display: inline-flex;
+      width: 100%;
+      justify-content: center;
+      margin-top: 8px;
+    }
+  }
+
+  /* ─── Mobile: hero, sections, grids → single column ────── */
+  @media (max-width: 860px) {
+    .hero__title { font-size: clamp(48px, 14vw, 88px) !important; line-height: 0.95; }
+    .hero__content { padding: 0 22px; }
+    .hero__bottombar { padding: 0 18px; font-size: 10px; gap: 10px; flex-wrap: wrap; }
+
+    .wrap { padding-left: 20px !important; padding-right: 20px !important; }
+
+    .manifesto__inner,
+    .storia__grid,
+    .apt__inner,
+    .posizione__inner,
+    .contatti__inner,
+    .footer__inner {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 28px !important;
+    }
+    .apt--mirror .apt__inner {
+      flex-direction: column-reverse !important;
+    }
+    .section-head__title,
+    .apt__name,
+    .posizione__inner h2,
+    .contatti__inner h2 {
+      font-size: clamp(34px, 8vw, 52px) !important;
+      line-height: 1.05;
+    }
+    .apt__specs { gap: 14px; }
+    .apts-index__row {
+      display: grid !important;
+      grid-template-columns: auto 1fr auto;
+      grid-template-areas:
+        "num name arrow"
+        "num type size";
+      row-gap: 4px;
+      column-gap: 12px;
+      padding: 18px 4px !important;
+    }
+    .apts-index__row-num   { grid-area: num; }
+    .apts-index__row-name  { grid-area: name; }
+    .apts-index__row-type  { grid-area: type; font-size: 12px; opacity: .7; }
+    .apts-index__row-size  { grid-area: size; font-size: 12px; opacity: .7; }
+    .apts-index__row-arrow { grid-area: arrow; }
+    .apts-index__head { flex-direction: column; align-items: flex-start; gap: 10px; }
+
+    .distances__row {
+      display: grid !important;
+      grid-template-columns: auto 1fr auto;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .footer__bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-start;
+      font-size: 11px;
+    }
+
+    .plan-modal__inner { width: 95vw !important; height: 90vh !important; }
+  }
+
+  /* ─── Floating action buttons (WhatsApp + Contatti) ───── */
+  .fab-stack {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 12px;
+    z-index: 90;
+  }
+  .fab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    text-decoration: none;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.18), 0 2px 6px rgba(0,0,0,0.10);
+    transition: transform .2s ease, box-shadow .2s ease;
+    border: 0;
+    cursor: pointer;
+  }
+  .fab:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.22), 0 3px 8px rgba(0,0,0,0.14);
+  }
+  .fab--whatsapp {
+    background: #25D366;
+    color: #fff;
+  }
+  .fab--whatsapp svg { width: 28px; height: 28px; }
+  .fab--contatti {
+    background: var(--copper, #b87333);
+    color: #fff;
+    font-family: 'Manrope', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    width: auto;
+    height: 44px;
+    padding: 0 18px;
+    border-radius: 24px;
+  }
+  @media (max-width: 480px) {
+    .fab-stack { right: 14px; bottom: 14px; gap: 10px; }
+    .fab { width: 50px; height: 50px; }
+    .fab--whatsapp svg { width: 24px; height: 24px; }
+    .fab--contatti {
+      height: 40px;
+      padding: 0 14px;
+      font-size: 10px;
+    }
+  }
+
+  /* ─── Cookie banner ──────────────────────────────────── */
+  .cookie-banner {
+    position: fixed;
+    left: 22px;
+    right: 22px;
+    bottom: 22px;
+    max-width: 520px;
+    background: #fbf8f3;
+    color: #2a2622;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 14px;
+    padding: 22px 24px;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.18);
+    z-index: 100;
+    font-family: 'Manrope', sans-serif;
+    font-size: 13.5px;
+    line-height: 1.55;
+    display: none;
+  }
+  .cookie-banner.show { display: block; }
+  .cookie-banner h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    margin: 0 0 8px;
+    font-weight: 600;
+  }
+  .cookie-banner p { margin: 0 0 14px; }
+  .cookie-banner a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .cookie-banner__actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .cookie-btn {
+    flex: 1 1 auto;
+    min-width: 110px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid #2a2622;
+    background: transparent;
+    color: #2a2622;
+    font-family: 'Manrope', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background .2s ease, color .2s ease;
+  }
+  .cookie-btn:hover { background: #2a2622; color: #fbf8f3; }
+  .cookie-btn--primary {
+    background: #2a2622;
+    color: #fbf8f3;
+  }
+  .cookie-btn--primary:hover { background: #000; }
+
+  /* Cookie modal (preferences) */
+  .cookie-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(15,14,12,0.72);
+    z-index: 110;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .cookie-modal.open { display: flex; }
+  .cookie-modal__inner {
+    background: #fbf8f3;
+    color: #2a2622;
+    max-width: 560px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    border-radius: 14px;
+    padding: 32px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 13.5px;
+    line-height: 1.6;
+  }
+  .cookie-modal h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    margin: 0 0 14px;
+    font-weight: 600;
+  }
+  .cookie-modal__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 0;
+    border-top: 1px solid rgba(0,0,0,0.1);
+  }
+  .cookie-modal__row strong { display: block; margin-bottom: 4px; font-size: 14px; }
+  .cookie-modal__row small { display: block; opacity: 0.75; }
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 42px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background: #ccc;
+    border-radius: 24px;
+    transition: .3s;
+  }
+  .slider::before {
+    content: "";
+    position: absolute;
+    height: 18px; width: 18px;
+    left: 3px; bottom: 3px;
+    background: white;
+    border-radius: 50%;
+    transition: .3s;
+  }
+  input:checked + .slider { background: #2a2622; }
+  input:checked + .slider::before { transform: translateX(18px); }
+  input:disabled + .slider { background: #888; cursor: not-allowed; }
+
+  @media (max-width: 480px) {
+    .cookie-banner { left: 12px; right: 12px; bottom: 12px; padding: 18px 18px; font-size: 13px; }
+    .cookie-modal__inner { padding: 24px 20px; }
+  }
+
+  /* ─── Legal pages (privacy / cookie policy) ──────────── */
+  .legal-page {
+    display: none;
+    padding: 120px 0 80px;
+    background: #fbf8f3;
+    color: #2a2622;
+  }
+  .legal-page.open { display: block; }
+  .legal-page .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+  .legal-page h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 6vw, 54px);
+    font-weight: 500;
+    margin: 0 0 8px;
+  }
+  .legal-page .legal-meta {
+    font-family: 'Manrope', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-bottom: 32px;
+  }
+  .legal-page h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 600;
+    margin: 32px 0 12px;
+  }
+  .legal-page p, .legal-page li {
+    font-family: 'Manrope', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .legal-page ul { padding-left: 22px; }
+  .legal-page a {
+    color: var(--copper, #b87333);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .legal-back {
+    display: inline-block;
+    margin-bottom: 24px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #2a2622;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+    cursor: pointer;
+  }
+  body.legal-open > main,
+  body.legal-open > .footer,
+  body.legal-open > .fab-stack { display: none; }
+</style>
+</head>
+<body>
+
+<!-- Reusable snail mark -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="snail" viewBox="0 0 64 64">
+      <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 47 Q 14 53 24 53 L 46 53 Q 53 53 56 49" />
+        <path d="M52 49 Q 56 36 52 28" />
+        <path d="M56 49 Q 60 38 58 31" />
+        <circle cx="51.4" cy="27.4" r="1.2" fill="currentColor" stroke="none" />
+        <circle cx="58.2" cy="30.4" r="1.2" fill="currentColor" stroke="none" />
+        <circle cx="28" cy="34" r="16" />
+        <circle cx="28" cy="34" r="11" />
+        <circle cx="28" cy="34" r="6.5" />
+        <circle cx="28" cy="34" r="2.5" />
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ════════════════════════════════════════════════════════
+     TOP BAR
+     ════════════════════════════════════════════════════════ -->
+<header class="topbar" id="topbar">
+  <a href="#top" class="topbar__brand">
+    <svg class="snail-mark" aria-hidden="true"><use href="#snail"/></svg>
+    <span class="topbar__brand-text">
+      <span class="topbar__brand-name">La Chiocciola</span>
+      <span class="topbar__brand-stars">Residence · CAV · Momo (NO)</span>
+    </span>
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Apri menu">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="topbar__nav" id="primaryNav" aria-label="Principale">
+    <a href="#storia">Storia</a>
+    <a href="#appartamenti">Appartamenti</a>
+    <a href="#posizione">Posizione</a>
+    <a href="#contatti">Contatti</a>
+  </nav>
+  <a href="#contatti" class="topbar__cta">Prenota</a>
+</header>
+
+<!-- ════════════════════════════════════════════════════════
+     HERO
+     ════════════════════════════════════════════════════════ -->
+<main id="top">
+<section class="hero" data-screen-label="01 Hero">
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="hero__content">
+    <h1 class="hero__title">
+      <small>Casa vacanze · dal 2018</small>
+      La<br/>Chiocciola
+    </h1>
+    <div class="hero__meta">
+      <div class="hero__stars">★ &nbsp; ★ &nbsp; ★</div>
+      <p class="hero__tag">
+        Cinque appartamenti tra i laghi e le colline novaresi.<br/>
+        A Momo, dove la lentezza diventa accoglienza.
+      </p>
+    </div>
+  </div>
+  <div class="hero__bottombar">
+    <span>45°37′N · 8°31′E</span>
+    <div class="hero__scroll">
+      <span>Scorri</span>
+      <span class="hero__scroll-line"></span>
+    </div>
+    <span>Aperti tutto l'anno</span>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     MANIFESTO  (was: "Quaderno della casa № I")
+     ════════════════════════════════════════════════════════ -->
+<section class="manifesto" id="manifesto" data-screen-label="02 Manifesto">
+  <div class="wrap">
+    <div class="manifesto__inner">
+      <aside class="manifesto__lead reveal">
+        Dalle nostre stanze
+      </aside>
+      <div class="manifesto__body reveal">
+        <p>
+          Una struttura nata da un <em>particolare curioso</em> vissuto in cantiere, che ha
+          regalato un nome e un'identità. Da allora, ogni stanza porta la propria storia —
+          fatta di colori, materiali e silenzi diversi.
+        </p>
+        <div class="manifesto__sig">— Laura e famiglia</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     STORIA
+     ════════════════════════════════════════════════════════ -->
+<section class="storia" id="storia" data-screen-label="03 Storia">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-head__num">№ 02 · LA STORIA</div>
+      <h2 class="section-head__title">Una <em>casa</em> tra<br/>le risaie e il bosco.</h2>
+    </div>
+    <div class="storia__grid">
+      <div class="storia__col reveal">
+        <p>
+          La Chiocciola è nata nel 2018, quando Laura — con la sua famiglia — ha deciso
+          di trasformare un edificio di recente costruzione in cinque piccoli appartamenti
+          da offrire agli ospiti per il breve o medio periodo.
+        </p>
+        <p>
+          Pulizia giornaliera, biancheria fornita, parcheggio interno ed eventuale servizio
+          di ristorazione a domicilio: piccoli confort che permettono anche agli ospiti meno
+          preparati di trovare accoglienza all'ultimo minuto.
+        </p>
+        <p>
+          Siamo aperti tutto l'anno. Anche nelle stagioni meno frequentate ospitiamo
+          clienti delle numerose attività del territorio, dei tanti castelli della provincia,
+          delle colline novaresi e dei grandi centri commerciali come l'Outlet di Vicolungo.
+        </p>
+        <p>
+          Fuori dai circuiti del turismo convenzionale, ma centrale per raggiungere
+          velocemente i laghi <em>Maggiore</em> e d'<em>Orta</em>, le colline novaresi, i
+          castelli della provincia.
+        </p>
+        <div class="storia__quote">
+          «&nbsp;Se La Chiocciola è una struttura che può definirsi calda ed accogliente,
+          ogni appartamento racconta a modo suo la nostra filosofia.&nbsp;»
+        </div>
+      </div>
+      <figure class="storia__figure reveal">
+        <img src="images/hero/esterno-04.jpg" alt="La Chiocciola — Momo" loading="lazy"/>
+        <figcaption>
+          <span>Esterno · Momo (NO)</span>
+          <span>2018 → oggi</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     APARTMENTS INDEX
+     ════════════════════════════════════════════════════════ -->
+<section class="apts-index" id="appartamenti" data-screen-label="04 Appartamenti — indice">
+  <div class="wrap">
+    <div class="apts-index__head reveal">
+      <h2 class="apts-index__title">I cinque <em>appartamenti</em></h2>
+      <span class="apts-index__meta">Indice · 5 unità · arredamenti distinti</span>
+    </div>
+    <ul class="apts-index__list reveal" role="list">
+      <li class="apts-index__row" data-jump="#apt-bosco">
+        <span class="apts-index__row-num">№ 02</span>
+        <span class="apts-index__row-name">I colori del bosco</span>
+        <span class="apts-index__row-type">Bilocale · max 3</span>
+        <span class="apts-index__row-size">28&nbsp;m²</span>
+        <span class="apts-index__row-arrow">↓</span>
+      </li>
+      <li class="apts-index__row" data-jump="#apt-sentiero">
+        <span class="apts-index__row-num">№ 04</span>
+        <span class="apts-index__row-name">Il sentiero</span>
+        <span class="apts-index__row-type">Trilocale · max 6</span>
+        <span class="apts-index__row-size">60&nbsp;m²</span>
+        <span class="apts-index__row-arrow">↓</span>
+      </li>
+      <li class="apts-index__row" data-jump="#apt-essenza">
+        <span class="apts-index__row-num">№ 05</span>
+        <span class="apts-index__row-name">L'essenza</span>
+        <span class="apts-index__row-type">Bilocale · max 4</span>
+        <span class="apts-index__row-size">42&nbsp;m²</span>
+        <span class="apts-index__row-arrow">↓</span>
+      </li>
+      <li class="apts-index__row" data-jump="#apt-guscio">
+        <span class="apts-index__row-num">№ 07</span>
+        <span class="apts-index__row-name">Il guscio</span>
+        <span class="apts-index__row-type">Mansardato · max 4</span>
+        <span class="apts-index__row-size">40&nbsp;m²</span>
+        <span class="apts-index__row-arrow">↓</span>
+      </li>
+      <li class="apts-index__row" data-jump="#apt-frase">
+        <span class="apts-index__row-num">№ 08</span>
+        <span class="apts-index__row-name">La frase</span>
+        <span class="apts-index__row-type">Bilocale · max 4</span>
+        <span class="apts-index__row-size">45&nbsp;m²</span>
+        <span class="apts-index__row-arrow">↓</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     APT 02 — I COLORI DEL BOSCO
+     ════════════════════════════════════════════════════════ -->
+<section class="apt" id="apt-bosco" data-screen-label="05 I colori del bosco">
+  <div class="wrap">
+    <div class="apt__inner">
+      <div class="apt__gallery reveal" data-gallery="bosco">
+        <div class="apt__gallery-stage">
+          <img src="images/bosco/01.jpg" alt="I colori del bosco — 01" class="active" loading="lazy"/>
+          <img src="images/bosco/02.jpg" alt="I colori del bosco — 02" loading="lazy"/>
+          <img src="images/bosco/03.jpg" alt="I colori del bosco — 03" loading="lazy"/>
+          <img src="images/bosco/04.jpg" alt="I colori del bosco — 04" loading="lazy"/>
+          <img src="images/bosco/05.jpg" alt="I colori del bosco — 05" loading="lazy"/>
+          <div class="apt__gallery-meta">01 / 05 · Bosco</div>
+        </div>
+        <div class="apt__thumbs">
+          <button class="active" data-i="0"><img src="images/bosco/01.jpg" loading="lazy" alt=""/></button>
+          <button data-i="1"><img src="images/bosco/02.jpg" loading="lazy" alt=""/></button>
+          <button data-i="2"><img src="images/bosco/03.jpg" loading="lazy" alt=""/></button>
+          <button data-i="3"><img src="images/bosco/04.jpg" loading="lazy" alt=""/></button>
+          <button data-i="4"><img src="images/bosco/05.jpg" loading="lazy" alt=""/></button>
+        </div>
+      </div>
+      <div class="apt__body reveal">
+        <div class="apt__num">№ 02 / Pian terreno</div>
+        <h3 class="apt__name">I&nbsp;colori<br/>del&nbsp;<em>bosco</em></h3>
+        <p class="apt__tagline">L'appartamento più minimal, in colori tenui che si affacciano sul giardino.</p>
+        <p class="apt__desc">
+          Situato a pian terreno in adiacenza alla reception, è costituito da una camera
+          matrimoniale con piccola zona giorno e bagno privato. Una finestra sul verde della
+          struttura, per chi cerca quiete senza orpelli.
+        </p>
+        <div class="apt__specs">
+          <div>
+            <div class="apt__spec-label">Tipologia</div>
+            <div class="apt__spec-value">Bilocale</div>
+          </div>
+          <div>
+            <div class="apt__spec-label">Ospiti</div>
+            <div class="apt__spec-value">3<small>max</small></div>
+          </div>
+          <div>
+            <div class="apt__spec-label">Superficie</div>
+            <div class="apt__spec-value">28<small>m²</small></div>
+          </div>
+        </div>
+        <button class="apt__services-toggle" aria-expanded="false">Servizi e dotazioni</button>
+        <ul class="apt__services">
+          <li>Armadio guardaroba</li>
+          <li>Appendiabiti</li>
+          <li>Credenza con piatti, posate, bicchieri, calici e tovaglie</li>
+          <li>Zona pranzo con tavolo e sedie</li>
+          <li>Bollitore</li>
+          <li>Minifrigo da viaggio</li>
+          <li>TV</li>
+          <li>Bagno con doccia, bidet, wc, lavabo</li>
+          <li>Scaldasalviette e phon</li>
+          <li>Riscaldamento a pavimento</li>
+          <li>Aria condizionata</li>
+          <li>Giardino esterno</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     APT 04 — IL SENTIERO  (mirrored)
+     ════════════════════════════════════════════════════════ -->
+<section class="apt apt--mirror" id="apt-sentiero" data-screen-label="06 Il sentiero">
+  <div class="wrap">
+    <div class="apt__inner">
+      <div class="apt__body reveal">
+        <div class="apt__num">№ 04 / Una casa vera</div>
+        <h3 class="apt__name">Il&nbsp;<em>sentiero</em></h3>
+        <p class="apt__tagline">Una casa vera e propria, con i servizi di un hotel.</p>
+        <p class="apt__desc">
+          Con due camere doppie permette di far soggiornare fino a sei ospiti.
+          Trilocale ampio, pensato per famiglie o piccoli gruppi che vogliono uno spazio
+          autonomo senza rinunciare al confort di una struttura ricettiva.
+        </p>
+        <div class="apt__specs">
+          <div>
+            <div class="apt__spec-label">Tipologia</div>
+            <div class="apt__spec-value">Trilocale</div>
+          </div>
+          <div>
+            <div class="apt__spec-label">Ospiti</div>
+            <div class="apt__spec-value">6<small>max</small></div>
+          </div>
+          <div>
+            <div class="apt__spec-label">Superficie</div>
+            <div class="apt__spec-value">60<small>m²</small></div>
+          </div>
+        </div>
+        <button class="apt__services-toggle" aria-expanded="false">Servizi e dotazioni</button>
+        <ul class="apt__services">
+          <li>Armadi guardaroba per ogni camera</li>
+          <li>Appendiabiti</li>
+          <li>Cucina attrezzata con piatti, posate, bicchieri, calici e tovaglie</li>
+          <li>Zona pranzo con tavolo e sedie</li>
+          <li>Bollitore</li>
+          <li>Frigorifero</li>
+          <li>TV</li>
+          <li>Divano</li>
+          <li>Bagno con doccia, bidet, wc, lavabo</li>
+          <li>Scaldasalviette e phon</li>
+          <li>Riscaldamento a pavimento</li>
+          <li>Aria condizionata</li>
+        </ul>
+      </div>
+      <div class="apt__gallery reveal" data-gallery="sentiero">
+        <div class="apt__gallery-stage">
+          <img src="images/sentiero/01.jpg" alt="Il sentiero — 01" class="active" loading="lazy"/>
+          <img src="images/sentiero/02.jpg" alt="Il sentiero — 02" loading="lazy"/>
+          <img src="images/sentiero/03.jpg" alt="Il sentiero — 03" loading="lazy"/>
+          <img src="images/sentiero/04.jpg" alt="Il sentiero — 04" loading="lazy"/>
+          <img src="images/sentiero/05.jpg" alt="Il sentiero — 05" loading="lazy"/>
+          <div class="apt__gallery-meta">01 / 05 · Sentiero</div>
+        </div>
+        <div class="apt__thumbs">
+          <button class="active" data-i="0"><img src="images/sentiero/01.jpg" loading="lazy" alt=""/></button>
+          <button data-i="1"><img src="images/sentiero/02.jpg" loading="lazy" alt=""/></button>
+          <button data-i="2"><img src="images/sentiero/03.jpg" loading="lazy" alt=""/></button>
+          <button data-i="3"><img src="images/sentiero/04.jpg" loading="lazy" alt=""/></button>
+          <button data-i="4"><img src="images/sentiero/05.jpg" loading="lazy" alt=""/></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     APT 05 — L'ESSENZA
+     ════════════════════════════════════════════════════════ -->
+<section class="apt" id="apt-essenza" data-screen-label="07 L'essenza">
+  <div class="wrap">
+    <div class="apt__inner">
+      <div class="apt__gallery reveal" data-gallery="essenza">
+        <div class="apt__gallery-stage">
+          <img src="images/essenza/01.jpg" alt="L'essenza — 01" class="active" loading="lazy"/>
+          <img src="images/essenza/02.jpg" alt="L'essenza — 02" loading="lazy"/>
+          <img src="images/essenza/03.jpg" alt="L'essenza — 03" loading="lazy"/>
+          <img src="images/essenza/04.jpg" alt="L'essenza — 04" loading="lazy"/>
+          <img src="images/essenza/05.jpg" alt="L'essenza — 05" loading="lazy"/>
+          <div class="apt__gallery-meta">01 / 05 · Essenza</div>
+        </div>
+        <div class="apt__thumbs">
+          <button class="active" data-i="0"><img src="images/essenza/01.jpg" loading="lazy" alt=""/></button>
+          <button data-i="1"><img src="images/essenza/02.jpg" loading="lazy" alt=""/></button>
+          <button data-i="2"><img src="images/essenza/03.jpg" loading="lazy" alt=""/></button>
+          <button data-i="3"><img src="images/essenza/04.jpg" loading="lazy" alt=""/></button>
+          <button data-i="4"><img src="images/essenza/05.jpg" loading="lazy" alt=""/></button>
+        </div>
+      </div>
+      <div class="apt__body reveal">
+        <div class="apt__num">№ 05 / Stile etnico</div>
+        <h3 class="apt__name">L'<em>essenza</em></h3>
+        <p class="apt__tagline">Stile etnico, amaca in tessuto colorato, cucina attrezzata.</p>
+        <p class="apt__desc">
+          L'ampia area giorno è pensata anche per organizzare cene con amici, come avviene
+          normalmente nelle serate di capodanno o quando i clienti decidono di affittare
+          l'intera struttura. Affaccio sul cortile interno tramite balcone.
+        </p>
+        <div class="apt__specs">
+          <div>
+            <div class="apt__spec-label">Tipologia</div>
+            <div class="apt__spec-value">Bilocale</div>
+          </div>
+          <div>
+            <div class="apt__spec-label">Ospiti</div>
+            <div class="apt__spec-value">4<small>max</small></div>
+          </div>
+          <div>
+            <div class="apt__spec-label">Superficie</div>
+            <div class="apt__spec-value">42<small>m²</small></div>
+          </div>
+        </div>
+        <button class="apt__services-toggle" aria-expanded="false">Servizi e dotazioni</button>
+        <ul class="apt__services">
+          <li>Armadio guardaroba</li>
+          <li>Appendiabiti</li>
+          <li>Cucina attrezzata con piatti, posate, bicchieri, calici e tovaglie</li>
+          <li>Zona pranzo con tavolo e sedie</li>
+          <li>Bollitore</li>
+          <li>Frigorifero</li>
+          <li>TV</li>
+          <li>Divano</li>
+          <li>Bagno con doccia, bidet, wc, lavabo</li>
+          <li>Scaldasalviette e phon</li>
+          <li>Riscaldamento a pavimento</li>
+          <li>Aria condizionata</li>
+          <li>Balcone su cortile interno</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     APT 07 — IL GUSCIO (mirrored)
+     ════════════════════════════════════════════════════════ -->
+<section class="apt apt--mirror" id="apt-guscio" data-screen-label="08 Il guscio">
+  <div class="wrap">
+    <div class="apt__inner">
+      <div class="apt__body reveal">
+        <div class="apt__num">№ 07 / Mansarda</div>
+        <h3 class="apt__name">Il&nbsp;<em>guscio</em></h3>
+        <p class="apt__tagline">La mansarda che raccoglie tutta la filosofia della casa.</p>
+        <p class="apt__desc">
+          La più calda e accogliente. È anche la più richiesta, ma volutamente i prezzi
+          restano concorrenziali con gli altri appartamenti. Travi a vista, lucernario,
+          scrivania e quell'aria intima delle stanze sotto il tetto.
+        </p>
+        <div class="apt__specs">
+          <div>
+            <div class="apt__spec-label">Tipologia</div>
+            <div class="apt__spec-value">Mansardato</div>
+          </div>
+          <div>
+            <div class="apt__spec-label">Ospiti</div>
+            <div class="apt__spec-value">4<small>max</small></div>
+          </div>
+          <div>
+            <div class="apt__spec-label">Superficie</div>
+            <div class="apt__spec-value">40<small>m²</small></div>
+          </div>
+        </div>
+        <button class="apt__services-toggle" aria-expanded="false">Servizi e dotazioni</button>
+        <ul class="apt__services">
+          <li>Armadio guardaroba</li>
+          <li>Appendiabiti</li>
+          <li>Cucina attrezzata con piatti, posate, bicchieri, calici e tovaglie</li>
+          <li>Zona pranzo con tavolo e sedie</li>
+          <li>Bollitore</li>
+          <li>Minifrigo</li>
+          <li>TV</li>
+          <li>Divano</li>
+          <li>Scrivania</li>
+          <li>Bagno con doccia, bidet, wc, lavabo</li>
+          <li>Scaldasalviette e phon</li>
+          <li>Riscaldamento a pavimento</li>
+          <li>Aria condizionata</li>
+        </ul>
+      </div>
+      <div class="apt__gallery reveal" data-gallery="guscio">
+        <div class="apt__gallery-stage">
+          <img src="images/guscio/01.jpg" alt="Il guscio — 01" class="active" loading="lazy"/>
+          <img src="images/guscio/02.jpg" alt="Il guscio — 02" loading="lazy"/>
+          <img src="images/guscio/03.jpg" alt="Il guscio — 03" loading="lazy"/>
+          <img src="images/guscio/04.jpg" alt="Il guscio — 04" loading="lazy"/>
+          <img src="images/guscio/05.jpg" alt="Il guscio — 05" loading="lazy"/>
+          <div class="apt__gallery-meta">01 / 05 · Guscio</div>
+        </div>
+        <div class="apt__thumbs">
+          <button class="active" data-i="0"><img src="images/guscio/01.jpg" loading="lazy" alt=""/></button>
+          <button data-i="1"><img src="images/guscio/02.jpg" loading="lazy" alt=""/></button>
+          <button data-i="2"><img src="images/guscio/03.jpg" loading="lazy" alt=""/></button>
+          <button data-i="3"><img src="images/guscio/04.jpg" loading="lazy" alt=""/></button>
+          <button data-i="4"><img src="images/guscio/05.jpg" loading="lazy" alt=""/></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     APT 08 — LA FRASE
+     ════════════════════════════════════════════════════════ -->
+<section class="apt" id="apt-frase" data-screen-label="09 La frase">
+  <div class="wrap">
+    <div class="apt__inner">
+      <div class="apt__gallery reveal" data-gallery="frase">
+        <div class="apt__gallery-stage">
+          <img src="images/frase/01.jpg" alt="La frase — 01" class="active" loading="lazy"/>
+          <img src="images/frase/02.jpg" alt="La frase — 02" loading="lazy"/>
+          <img src="images/frase/03.jpg" alt="La frase — 03" loading="lazy"/>
+          <img src="images/frase/04.jpg" alt="La frase — 04" loading="lazy"/>
+          <img src="images/frase/05.jpg" alt="La frase — 05" loading="lazy"/>
+          <div class="apt__gallery-meta">01 / 05 · Frase</div>
+        </div>
+        <div class="apt__thumbs">
+          <button class="active" data-i="0"><img src="images/frase/01.jpg" loading="lazy" alt=""/></button>
+          <button data-i="1"><img src="images/frase/02.jpg" loading="lazy" alt=""/></button>
+          <button data-i="2"><img src="images/frase/03.jpg" loading="lazy" alt=""/></button>
+          <button data-i="3"><img src="images/frase/04.jpg" loading="lazy" alt=""/></button>
+          <button data-i="4"><img src="images/frase/05.jpg" loading="lazy" alt=""/></button>
+        </div>
+      </div>
+      <div class="apt__body reveal">
+        <div class="apt__num">№ 08 / Bianco e nero</div>
+        <h3 class="apt__name">La&nbsp;<em>frase</em></h3>
+        <p class="apt__tagline">Bianco e nero, lavagne dove lasciare le proprie sensazioni.</p>
+        <p class="apt__desc">
+          Se La Chiocciola è una struttura calda e accogliente, questo appartamento permette
+          agli ospiti di scrivere le proprie impressioni sulle lavagne. Il terrazzino interno
+          ne caratterizza ulteriormente lo spazio, donando una piccola area verde tutta privata.
+        </p>
+        <div class="apt__specs">
+          <div>
+            <div class="apt__spec-label">Tipologia</div>
+            <div class="apt__spec-value">Bilocale</div>
+          </div>
+          <div>
+            <div class="apt__spec-label">Ospiti</div>
+            <div class="apt__spec-value">4<small>max</small></div>
+          </div>
+          <div>
+            <div class="apt__spec-label">Superficie</div>
+            <div class="apt__spec-value">45<small>m²</small></div>
+          </div>
+        </div>
+        <button class="apt__services-toggle" aria-expanded="false">Servizi e dotazioni</button>
+        <ul class="apt__services">
+          <li>Armadio guardaroba</li>
+          <li>Appendiabiti</li>
+          <li>Credenza con piatti, posate, bicchieri, calici e tovaglie</li>
+          <li>Zona pranzo con tavolo e sedie</li>
+          <li>Bollitore</li>
+          <li>Minifrigo</li>
+          <li>TV</li>
+          <li>Divano letto</li>
+          <li>Bagno con doccia, bidet, wc, lavabo</li>
+          <li>Scaldasalviette e phon</li>
+          <li>Riscaldamento a pavimento</li>
+          <li>Aria condizionata</li>
+          <li>Terrazzo esterno</li>
+          <li>Balcone su cortile interno</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     POSIZIONE
+     ════════════════════════════════════════════════════════ -->
+<section class="posizione" id="posizione" data-screen-label="10 Posizione">
+  <div class="wrap">
+    <div class="posizione__inner">
+      <div class="reveal">
+        <div class="label" style="color:var(--copper); margin-bottom:18px;">№ 03 · POSIZIONE</div>
+        <h2>Tra i due <em>laghi</em>,<br/>nel cuore del medio<br/>novarese.</h2>
+        <p class="posizione__lede">
+          Momo si adagia centralmente tra la bassa novarese e le prealpi cusiane, ove si
+          trovano i paesi del lago Maggiore e il caratteristico borgo di Orta San Giulio.
+        </p>
+        <div class="posizione__address">
+          Residence / CAV La Chiocciola<br/>
+          di Cerruti Nicolas<br/>
+          Via Davide Squarini, 14<br/>
+          28015 Momo (NO) &mdash; Piemonte<br/>
+          Uscita A26 · Fontaneto–Borgomanero
+        </div>
+      </div>
+      <div class="distances reveal">
+        <div class="distances__row">
+          <div class="distances__km">24<small>km</small></div>
+          <div class="distances__name">Aeroporto di Malpensa<small>Hub internazionale</small></div>
+          <div class="distances__tag">Volo</div>
+        </div>
+        <div class="distances__row">
+          <div class="distances__km">~6<small>km</small></div>
+          <div class="distances__name">Uscita A26 · Fontaneto–Borgomanero<small>Autostrada dei Trafori</small></div>
+          <div class="distances__tag">Auto</div>
+        </div>
+        <div class="distances__row">
+          <div class="distances__km">~20<small>km</small></div>
+          <div class="distances__name">Lago Maggiore<small>Arona · Stresa · Verbania</small></div>
+          <div class="distances__tag">Lago</div>
+        </div>
+        <div class="distances__row">
+          <div class="distances__km">~25<small>km</small></div>
+          <div class="distances__name">Lago d'Orta<small>Orta San Giulio</small></div>
+          <div class="distances__tag">Borgo</div>
+        </div>
+        <div class="distances__row">
+          <div class="distances__km">~15<small>km</small></div>
+          <div class="distances__name">Outlet Vicolungo<small>Shopping</small></div>
+          <div class="distances__tag">Outlet</div>
+        </div>
+        <div class="distances__row">
+          <div class="distances__km">~30<small>km</small></div>
+          <div class="distances__name">Colline novaresi e castelli<small>Ghemme · Briona · Proh</small></div>
+          <div class="distances__tag">Colline</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     CONTATTI
+     ════════════════════════════════════════════════════════ -->
+<section class="contatti" id="contatti" data-screen-label="11 Contatti">
+  <div class="wrap">
+    <div class="contatti__inner">
+      <div class="reveal">
+        <div class="label" style="margin-bottom:18px;">№ 04 · CONTATTI</div>
+        <h2>Scriveteci, <em>vi ospitiamo</em>.</h2>
+        <p class="contatti__lede">
+          Aperti tutto l'anno, anche per soggiorni dell'ultimo minuto.
+          Per disponibilità e prenotazioni, chiamate o scrivete.
+        </p>
+      </div>
+      <dl class="contatti__list reveal">
+        <li>
+          <dt>Indirizzo</dt>
+          <dd>Via Davide Squarini, 14<br/>28015 Momo (NO) · Piemonte</dd>
+        </li>
+        <li>
+          <dt>Telefono</dt>
+          <dd><a href="tel:+393801396080">+39 380 139 60 80</a></dd>
+        </li>
+        <li>
+          <dt>E-mail</dt>
+          <dd><a href="mailto:info@cavlachiocciola.it">info@cavlachiocciola.it</a></dd>
+        </li>
+        <li>
+          <dt>Sito</dt>
+          <dd><a href="https://www.cavlachiocciola.it" target="_blank" rel="noopener">www.cavlachiocciola.it</a></dd>
+        </li>
+        <li>
+          <dt>Apertura</dt>
+          <dd>Tutto l'anno</dd>
+        </li>
+        <li>
+          <dt>Titolare</dt>
+          <dd>Cerruti Nicolas</dd>
+        </li>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     FOOTER
+     ════════════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <svg class="snail-mark" aria-hidden="true" style="color:var(--copper)"><use href="#snail"/></svg>
+        <div>
+          La Chiocciola
+          <div style="font-family:'Manrope',sans-serif; font-style:normal; font-size:11px; letter-spacing:0.18em; color:var(--copper); margin-top:6px; text-transform:uppercase; font-weight:500;">Residence / CAV &middot; di Cerruti Nicolas</div>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h4>Struttura</h4>
+        <a href="#storia">La storia</a>
+        <a href="#appartamenti">Appartamenti</a>
+        <a href="#posizione">Posizione</a>
+      </div>
+      <div class="footer__col">
+        <h4>Contatti</h4>
+        <a href="mailto:info@cavlachiocciola.it">info@cavlachiocciola.it</a>
+        <a href="tel:+393801396080">+39 380 139 60 80</a>
+        <a href="https://www.cavlachiocciola.it" target="_blank" rel="noopener">www.cavlachiocciola.it</a>
+        <p>Via Davide Squarini, 14 · 28015 Momo (NO)</p>
+      </div>
+      <div class="footer__col">
+        <h4>Legale</h4>
+        <a href="#" data-legal="privacy">Privacy Policy</a>
+        <a href="#" data-legal="cookie">Cookie Policy</a>
+        <a href="#" id="cookieSettingsLink">Preferenze cookie</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© Residence / CAV La Chiocciola di Cerruti Nicolas</span>
+      <span>P.IVA 02580740039 · SDI M5UXCR1</span>
+      <span>Aperti tutto l'anno</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════════════════════
+     PLANIMETRIA MODAL (single, reused)
+     ════════════════════════════════════════════════════════ -->
+<div class="plan-modal" id="planModal" role="dialog" aria-modal="true" aria-labelledby="planModalTitle">
+  <div class="plan-modal__inner">
+    <div class="plan-modal__head">
+      <div>
+        <div class="plan-modal__title" id="planModalTitle">
+          Planimetria
+          <small>Pianta in scala · PDF</small>
+        </div>
+      </div>
+      <div class="plan-modal__actions">
+        <a href="#" class="plan-modal__download" id="planModalDownload" target="_blank" rel="noopener">Apri PDF ↗</a>
+        <button class="plan-modal__close" id="planModalClose" aria-label="Chiudi">×</button>
+      </div>
+    </div>
+    <div class="plan-modal__viewer" id="planModalViewer"></div>
+  </div>
+</div>
+
+</main>
+
+<!-- ════════════════════════════════════════════════════════
+     LEGAL PAGES — Privacy & Cookie Policy
+     ════════════════════════════════════════════════════════ -->
+<section class="legal-page" id="legal-privacy">
+  <div class="wrap">
+    <a class="legal-back" data-legal-close>← Torna al sito</a>
+    <h1>Privacy Policy</h1>
+    <div class="legal-meta">Ultimo aggiornamento · 21 maggio 2026</div>
+
+    <p>La presente informativa è resa ai sensi dell'art. 13 del Regolamento (UE) 2016/679 (GDPR) e del D.lgs. 196/2003 e successive modificazioni, per gli utenti che consultano il sito <strong>cavlachiocciola.it</strong>.</p>
+
+    <h2>1. Titolare del trattamento</h2>
+    <p>Residence / CAV La Chiocciola di <strong>Cerruti Nicolas</strong><br/>
+    Via Davide Squarini, 14 — 28015 Momo (NO)<br/>
+    P.IVA 02580740039<br/>
+    E-mail: <a href="mailto:info@cavlachiocciola.it">info@cavlachiocciola.it</a><br/>
+    Telefono: <a href="tel:+393801396080">+39 380 139 60 80</a></p>
+
+    <h2>2. Tipologie di dati raccolti</h2>
+    <ul>
+      <li><strong>Dati forniti volontariamente</strong> (e-mail, telefono, nome) quando l'utente ci contatta per richieste di disponibilità o prenotazioni.</li>
+      <li><strong>Dati di navigazione</strong> raccolti automaticamente (indirizzo IP, browser, pagine visitate) per finalità tecniche e statistiche.</li>
+      <li><strong>Cookie</strong>, secondo quanto descritto nella <a href="#" data-legal="cookie">Cookie Policy</a>.</li>
+    </ul>
+
+    <h2>3. Finalità e base giuridica</h2>
+    <ul>
+      <li>Riscontro alle richieste di contatto e prenotazione (base giuridica: esecuzione di misure precontrattuali, art. 6.1.b GDPR).</li>
+      <li>Adempimento di obblighi di legge fiscali e amministrativi (art. 6.1.c GDPR).</li>
+      <li>Statistiche aggregate sulla navigazione, previo consenso (art. 6.1.a GDPR).</li>
+    </ul>
+
+    <h2>4. Conservazione dei dati</h2>
+    <p>I dati di contatto sono conservati per il tempo necessario a evadere la richiesta e per i successivi 24 mesi. I dati relativi a prenotazioni e fatturazione sono conservati per 10 anni come previsto dalla normativa fiscale italiana.</p>
+
+    <h2>5. Comunicazione a terzi</h2>
+    <p>I dati non sono diffusi né ceduti a terzi per finalità commerciali. Possono essere comunicati a fornitori di servizi tecnici (hosting, gestionale di prenotazione) nominati responsabili del trattamento ai sensi dell'art. 28 GDPR.</p>
+
+    <h2>6. Diritti dell'interessato</h2>
+    <p>L'utente può esercitare in qualsiasi momento i diritti previsti dagli artt. 15-22 GDPR (accesso, rettifica, cancellazione, limitazione, portabilità, opposizione, revoca del consenso) scrivendo a <a href="mailto:info@cavlachiocciola.it">info@cavlachiocciola.it</a>. È inoltre possibile proporre reclamo all'Autorità Garante per la protezione dei dati personali (<a href="https://www.garanteprivacy.it" target="_blank" rel="noopener">www.garanteprivacy.it</a>).</p>
+
+    <h2>7. Sicurezza</h2>
+    <p>Il titolare adotta misure tecniche e organizzative adeguate a proteggere i dati da accessi non autorizzati, perdita o distruzione.</p>
+  </div>
+</section>
+
+<section class="legal-page" id="legal-cookie">
+  <div class="wrap">
+    <a class="legal-back" data-legal-close>← Torna al sito</a>
+    <h1>Cookie Policy</h1>
+    <div class="legal-meta">Ultimo aggiornamento · 21 maggio 2026</div>
+
+    <p>Questo sito utilizza cookie e tecnologie analoghe in conformità con il Provvedimento del Garante per la protezione dei dati personali del 10 giugno 2021 e con il GDPR (UE 2016/679).</p>
+
+    <h2>1. Cosa sono i cookie</h2>
+    <p>I cookie sono piccoli file di testo che i siti visitati inviano al terminale dell'utente, dove vengono memorizzati per essere ritrasmessi al sito alla visita successiva.</p>
+
+    <h2>2. Tipologie di cookie utilizzati</h2>
+    <ul>
+      <li><strong>Cookie tecnici (necessari)</strong> — Indispensabili per il funzionamento del sito (memorizzazione delle preferenze cookie, sessione). Non richiedono consenso.</li>
+      <li><strong>Cookie analitici</strong> — Utilizzati in forma aggregata per misurare le visite e migliorare il sito. Attivati solo previo consenso.</li>
+      <li><strong>Cookie di terze parti</strong> — Eventuali contenuti incorporati (mappe, video) possono installare cookie propri. Attivati solo previo consenso.</li>
+    </ul>
+
+    <h2>3. Gestione del consenso</h2>
+    <p>Al primo accesso viene mostrato un banner che consente di accettare tutti i cookie, rifiutarli o personalizzare la scelta. Le preferenze possono essere modificate in qualsiasi momento tramite il link <a href="#" id="cookieSettingsInline">Preferenze cookie</a> nel footer.</p>
+
+    <h2>4. Disattivazione dal browser</h2>
+    <p>È inoltre possibile disabilitare i cookie direttamente dalle impostazioni del proprio browser. La disattivazione dei cookie tecnici può compromettere il corretto funzionamento del sito.</p>
+
+    <h2>5. Contatti</h2>
+    <p>Per ogni richiesta in merito al trattamento dei dati: <a href="mailto:info@cavlachiocciola.it">info@cavlachiocciola.it</a>.</p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     FLOATING ACTION BUTTONS — WhatsApp + Contatti
+     ════════════════════════════════════════════════════════ -->
+<div class="fab-stack" aria-label="Azioni rapide">
+  <a class="fab fab--whatsapp"
+     href="https://wa.me/393801396080?text=Salve%2C%20vorrei%20informazioni%20su%20La%20Chiocciola"
+     target="_blank"
+     rel="noopener"
+     aria-label="Scrivici su WhatsApp">
+    <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+      <path d="M16.001 3.2c-7.07 0-12.8 5.73-12.8 12.8 0 2.26.6 4.46 1.73 6.4l-1.83 6.67 6.83-1.79a12.78 12.78 0 0 0 6.07 1.54h.01c7.07 0 12.8-5.73 12.8-12.8s-5.73-12.81-12.81-12.81zm0 23.37h-.01a10.6 10.6 0 0 1-5.4-1.48l-.39-.23-4.05 1.06 1.08-3.95-.25-.4a10.59 10.59 0 1 1 9.02 4.99zm5.81-7.93c-.32-.16-1.88-.93-2.18-1.03-.29-.11-.5-.16-.71.16-.21.32-.81 1.03-1 1.24-.18.21-.37.24-.69.08-.32-.16-1.34-.5-2.55-1.58a9.6 9.6 0 0 1-1.77-2.2c-.18-.32-.02-.49.14-.65.14-.14.32-.37.48-.55.16-.18.21-.32.32-.53.11-.21.05-.4-.03-.55-.08-.16-.71-1.71-.97-2.34-.26-.62-.52-.53-.71-.54l-.6-.01a1.16 1.16 0 0 0-.85.4c-.29.32-1.12 1.09-1.12 2.66s1.15 3.08 1.31 3.3c.16.21 2.27 3.46 5.49 4.85.77.33 1.36.53 1.83.68.77.24 1.47.21 2.02.13.62-.09 1.88-.77 2.15-1.51.27-.74.27-1.37.19-1.51-.08-.13-.29-.21-.61-.37z"/>
+    </svg>
+  </a>
+  <a class="fab fab--contatti" href="#contatti" aria-label="Vai alla sezione contatti">
+    Contatti
+  </a>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     COOKIE BANNER + PREFERENCES MODAL
+     ════════════════════════════════════════════════════════ -->
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-labelledby="cookieBannerTitle">
+  <h3 id="cookieBannerTitle">Rispettiamo la tua privacy</h3>
+  <p>
+    Utilizziamo cookie tecnici necessari al funzionamento del sito e, previo consenso,
+    cookie analitici per migliorare l'esperienza di navigazione. Puoi accettare, rifiutare
+    o personalizzare le tue scelte. Leggi la <a href="#" data-legal="cookie">Cookie Policy</a>
+    e la <a href="#" data-legal="privacy">Privacy Policy</a>.
+  </p>
+  <div class="cookie-banner__actions">
+    <button class="cookie-btn" id="cookieReject">Solo necessari</button>
+    <button class="cookie-btn" id="cookieCustomize">Personalizza</button>
+    <button class="cookie-btn cookie-btn--primary" id="cookieAccept">Accetta tutti</button>
+  </div>
+</div>
+
+<div class="cookie-modal" id="cookieModal" role="dialog" aria-modal="true" aria-labelledby="cookieModalTitle">
+  <div class="cookie-modal__inner">
+    <h3 id="cookieModalTitle">Preferenze cookie</h3>
+    <p style="margin:0 0 8px;">Scegli quali categorie di cookie consentire. I cookie tecnici sono sempre attivi perché necessari al funzionamento del sito.</p>
+
+    <div class="cookie-modal__row">
+      <div>
+        <strong>Cookie tecnici (necessari)</strong>
+        <small>Indispensabili per il funzionamento del sito e per memorizzare le tue preferenze.</small>
+      </div>
+      <label class="switch">
+        <input type="checkbox" checked disabled />
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="cookie-modal__row">
+      <div>
+        <strong>Cookie analitici</strong>
+        <small>Ci aiutano a capire come viene utilizzato il sito in forma anonima e aggregata.</small>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="cookieAnalytics" />
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="cookie-modal__row">
+      <div>
+        <strong>Cookie di terze parti</strong>
+        <small>Eventuali contenuti incorporati (mappe, video) che possono installare cookie propri.</small>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="cookieThird" />
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="cookie-banner__actions" style="margin-top:20px;">
+      <button class="cookie-btn" id="cookieModalCancel">Annulla</button>
+      <button class="cookie-btn cookie-btn--primary" id="cookieModalSave">Salva preferenze</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ─── Topbar scroll state ─────────────────────────────
+  const topbar = document.getElementById('topbar');
+  const onScroll = () => {
+    topbar.classList.toggle('scrolled', window.scrollY > 60);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // ─── Mobile nav toggle ───────────────────────────────
+  const navToggle = document.getElementById('navToggle');
+  const primaryNav = document.getElementById('primaryNav');
+  navToggle.addEventListener('click', () => {
+    const open = primaryNav.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', String(open));
+    navToggle.setAttribute('aria-label', open ? 'Chiudi menu' : 'Apri menu');
+    topbar.classList.toggle('menu-open', open);
+  });
+  // Close nav on link click (mobile)
+  primaryNav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      primaryNav.classList.remove('open');
+      topbar.classList.remove('menu-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // ─── Reveal on scroll ────────────────────────────────
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ─── Apartment index rows jump ───────────────────────
+  document.querySelectorAll('.apts-index__row').forEach(row => {
+    row.addEventListener('click', () => {
+      const target = row.getAttribute('data-jump');
+      if (target) {
+        const el = document.querySelector(target);
+        if (el) {
+          const y = el.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }
+    });
+  });
+
+  // ─── Galleries ───────────────────────────────────────
+  document.querySelectorAll('.apt__gallery').forEach(gal => {
+    const imgs = gal.querySelectorAll('.apt__gallery-stage img');
+    const btns = gal.querySelectorAll('.apt__thumbs button');
+    const meta = gal.querySelector('.apt__gallery-meta');
+    const galName = gal.getAttribute('data-gallery') || '';
+    const galLabel = galName.charAt(0).toUpperCase() + galName.slice(1);
+    let current = 0;
+
+    function go(i) {
+      imgs.forEach((img, k) => img.classList.toggle('active', k === i));
+      btns.forEach((b, k) => b.classList.toggle('active', k === i));
+      if (meta) meta.textContent = String(i+1).padStart(2,'0') + ' / 05 · ' + galLabel;
+      current = i;
+    }
+
+    btns.forEach((b, i) => b.addEventListener('click', () => go(i)));
+    gal.querySelector('.apt__gallery-stage').addEventListener('click', () => {
+      go((current + 1) % imgs.length);
+    });
+  });
+
+  // ─── Planimetria ─────────────────────────────────────
+  const PLANS = {
+    'apt-bosco':    { file: 'planimetrie/colori-del-bosco.pdf', name: 'I colori del bosco' },
+    'apt-sentiero': { file: 'planimetrie/il-sentiero.pdf',      name: 'Il sentiero' },
+    'apt-essenza':  { file: 'planimetrie/l-essenza.pdf',        name: "L'essenza" },
+    'apt-guscio':   { file: 'planimetrie/il-guscio.pdf',        name: 'Il guscio' },
+    'apt-frase':    { file: 'planimetrie/la-frase.pdf',         name: 'La frase' },
+  };
+
+  Object.entries(PLANS).forEach(([id, info]) => {
+    const section = document.getElementById(id);
+    if (!section) return;
+    const body = section.querySelector('.apt__body');
+    if (!body) return;
+    const btn = document.createElement('button');
+    btn.className = 'apt__plan-btn';
+    btn.type = 'button';
+    btn.setAttribute('data-plan-id', id);
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18"/><path d="M3 11 H21 M11 3 V21 M15 11 V15 M11 15 H15"/></svg> Vedi la planimetria';
+    body.appendChild(btn);
+  });
+
+  const modal = document.getElementById('planModal');
+  const modalTitle = document.getElementById('planModalTitle');
+  const modalDownload = document.getElementById('planModalDownload');
+  const modalViewer = document.getElementById('planModalViewer');
+  const modalClose = document.getElementById('planModalClose');
+
+  function openPlan(id) {
+    const info = PLANS[id];
+    if (!info) return;
+    modalTitle.innerHTML = info.name + '<small>Planimetria in scala · PDF</small>';
+    modalDownload.href = info.file;
+    modalViewer.innerHTML = '<iframe src="' + info.file + '#view=FitH&toolbar=0&navpanes=0" title="Planimetria ' + info.name + '"></iframe>';
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closePlan() {
+    modal.classList.remove('open');
+    modalViewer.innerHTML = '';
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('.apt__plan-btn').forEach(b => {
+    b.addEventListener('click', () => openPlan(b.getAttribute('data-plan-id')));
+  });
+  modalClose.addEventListener('click', closePlan);
+  modal.addEventListener('click', (e) => { if (e.target === modal) closePlan(); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closePlan();
+  });
+
+  // ─── Services toggle ─────────────────────────────────
+  document.querySelectorAll('.apt__services-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const list = btn.nextElementSibling;
+      const isOpen = list.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(isOpen));
+    });
+  });
+
+  // ════════════════════════════════════════════════════
+  // COOKIE CONSENT MANAGEMENT (GDPR compliant)
+  // ════════════════════════════════════════════════════
+  const CONSENT_KEY = 'lc_cookie_consent_v1';
+  const banner = document.getElementById('cookieBanner');
+  const cookieModal = document.getElementById('cookieModal');
+  const cookieAnalytics = document.getElementById('cookieAnalytics');
+  const cookieThird = document.getElementById('cookieThird');
+
+  function loadConsent() {
+    try { return JSON.parse(localStorage.getItem(CONSENT_KEY)); }
+    catch { return null; }
+  }
+  function saveConsent(c) {
+    c.timestamp = new Date().toISOString();
+    localStorage.setItem(CONSENT_KEY, JSON.stringify(c));
+    applyConsent(c);
+  }
+  function applyConsent(c) {
+    // Hook: load analytics / third-party scripts here when c.analytics / c.third are true.
+    // Example placeholder:
+    // if (c.analytics) { /* load GA / Matomo */ }
+    // if (c.third) { /* load embedded maps, videos */ }
+  }
+  function showBanner() { banner.classList.add('show'); }
+  function hideBanner() { banner.classList.remove('show'); }
+  function openCookieModal() {
+    const c = loadConsent() || { analytics: false, third: false };
+    cookieAnalytics.checked = !!c.analytics;
+    cookieThird.checked = !!c.third;
+    cookieModal.classList.add('open');
+  }
+  function closeCookieModal() { cookieModal.classList.remove('open'); }
+
+  document.getElementById('cookieAccept').addEventListener('click', () => {
+    saveConsent({ necessary: true, analytics: true, third: true });
+    hideBanner();
+  });
+  document.getElementById('cookieReject').addEventListener('click', () => {
+    saveConsent({ necessary: true, analytics: false, third: false });
+    hideBanner();
+  });
+  document.getElementById('cookieCustomize').addEventListener('click', openCookieModal);
+  document.getElementById('cookieModalCancel').addEventListener('click', closeCookieModal);
+  document.getElementById('cookieModalSave').addEventListener('click', () => {
+    saveConsent({
+      necessary: true,
+      analytics: cookieAnalytics.checked,
+      third: cookieThird.checked
+    });
+    closeCookieModal();
+    hideBanner();
+  });
+  cookieModal.addEventListener('click', (e) => {
+    if (e.target === cookieModal) closeCookieModal();
+  });
+
+  // "Preferenze cookie" links in footer / cookie policy
+  document.getElementById('cookieSettingsLink').addEventListener('click', (e) => {
+    e.preventDefault();
+    openCookieModal();
+  });
+  const inlineSettings = document.getElementById('cookieSettingsInline');
+  if (inlineSettings) {
+    inlineSettings.addEventListener('click', (e) => {
+      e.preventDefault();
+      openCookieModal();
+    });
+  }
+
+  // Show banner only if no consent yet
+  const existing = loadConsent();
+  if (!existing) {
+    // small delay so it doesn't pop instantly on first paint
+    setTimeout(showBanner, 600);
+  } else {
+    applyConsent(existing);
+  }
+
+  // ════════════════════════════════════════════════════
+  // LEGAL PAGES (Privacy / Cookie Policy)
+  // ════════════════════════════════════════════════════
+  function openLegal(which) {
+    document.body.classList.add('legal-open');
+    document.querySelectorAll('.legal-page').forEach(p => p.classList.remove('open'));
+    const target = document.getElementById('legal-' + which);
+    if (target) target.classList.add('open');
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }
+  function closeLegal() {
+    document.body.classList.remove('legal-open');
+    document.querySelectorAll('.legal-page').forEach(p => p.classList.remove('open'));
+  }
+  document.querySelectorAll('[data-legal]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      openLegal(a.getAttribute('data-legal'));
+    });
+  });
+  document.querySelectorAll('[data-legal-close]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeLegal();
+    });
+  });
+</script>
+
+</body>
+</html>
