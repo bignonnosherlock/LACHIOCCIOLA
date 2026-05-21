@@ -1628,4 +1628,103 @@
   const cookieAnalytics = document.getElementById('cookieAnalytics');
   const cookieThird = document.getElementById('cookieThird');
 
- 
+  function loadConsent() {
+    try { return JSON.parse(localStorage.getItem(CONSENT_KEY)); }
+    catch { return null; }
+  }
+  function saveConsent(c) {
+    c.timestamp = new Date().toISOString();
+    localStorage.setItem(CONSENT_KEY, JSON.stringify(c));
+    applyConsent(c);
+  }
+  function applyConsent(c) {
+    // Hook: load analytics / third-party scripts here when c.analytics / c.third are true.
+    // Example placeholder:
+    // if (c.analytics) { /* load GA / Matomo */ }
+    // if (c.third) { /* load embedded maps, videos */ }
+  }
+  function showBanner() { banner.classList.add('show'); }
+  function hideBanner() { banner.classList.remove('show'); }
+  function openCookieModal() {
+    const c = loadConsent() || { analytics: false, third: false };
+    cookieAnalytics.checked = !!c.analytics;
+    cookieThird.checked = !!c.third;
+    cookieModal.classList.add('open');
+  }
+  function closeCookieModal() { cookieModal.classList.remove('open'); }
+
+  document.getElementById('cookieAccept').addEventListener('click', () => {
+    saveConsent({ necessary: true, analytics: true, third: true });
+    hideBanner();
+  });
+  document.getElementById('cookieReject').addEventListener('click', () => {
+    saveConsent({ necessary: true, analytics: false, third: false });
+    hideBanner();
+  });
+  document.getElementById('cookieCustomize').addEventListener('click', openCookieModal);
+  document.getElementById('cookieModalCancel').addEventListener('click', closeCookieModal);
+  document.getElementById('cookieModalSave').addEventListener('click', () => {
+    saveConsent({
+      necessary: true,
+      analytics: cookieAnalytics.checked,
+      third: cookieThird.checked
+    });
+    closeCookieModal();
+    hideBanner();
+  });
+  cookieModal.addEventListener('click', (e) => {
+    if (e.target === cookieModal) closeCookieModal();
+  });
+
+  // "Preferenze cookie" links in footer / cookie policy
+  document.getElementById('cookieSettingsLink').addEventListener('click', (e) => {
+    e.preventDefault();
+    openCookieModal();
+  });
+  const inlineSettings = document.getElementById('cookieSettingsInline');
+  if (inlineSettings) {
+    inlineSettings.addEventListener('click', (e) => {
+      e.preventDefault();
+      openCookieModal();
+    });
+  }
+
+  // Show banner only if no consent yet
+  const existing = loadConsent();
+  if (!existing) {
+    // small delay so it doesn't pop instantly on first paint
+    setTimeout(showBanner, 600);
+  } else {
+    applyConsent(existing);
+  }
+
+  // ════════════════════════════════════════════════════
+  // LEGAL PAGES (Privacy / Cookie Policy)
+  // ════════════════════════════════════════════════════
+  function openLegal(which) {
+    document.body.classList.add('legal-open');
+    document.querySelectorAll('.legal-page').forEach(p => p.classList.remove('open'));
+    const target = document.getElementById('legal-' + which);
+    if (target) target.classList.add('open');
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }
+  function closeLegal() {
+    document.body.classList.remove('legal-open');
+    document.querySelectorAll('.legal-page').forEach(p => p.classList.remove('open'));
+  }
+  document.querySelectorAll('[data-legal]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      openLegal(a.getAttribute('data-legal'));
+    });
+  });
+  document.querySelectorAll('[data-legal-close]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeLegal();
+    });
+  });
+</script>
+
+</body>
+</html>
